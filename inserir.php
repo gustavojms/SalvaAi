@@ -15,14 +15,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Inicial</title>
+    <title>Inserir</title>
 </head>
 <body>
-    <form action="./inserir.php" method="POST">
-            <button name="tipo" id="tipo"value="entrada">Entrada</button>
-    </form>
-    <form action="./inserir.php" method="POST">
-            <button name="tipo" id="tipo" value="saida">Saida</button>
+    <form action="./lancamentos/lancamento.php" method="POST">
+        <input type="hidden" name="tipo" id="tipo" value=<?=$_POST['tipo']?>>
+        <input type="number" name="valor" id="valor" step=".01">
+        <input type="text" name="descricao" id="descricao">
+        <button type="submit">Inserir</button>
     </form>
     <?php foreach($data as $row): ?>
 

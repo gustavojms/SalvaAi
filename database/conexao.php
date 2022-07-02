@@ -4,7 +4,7 @@ session_start();
 
     $localhost = "localhost";
     $user = "root";
-    $password = "20121b6-rc0246";
+    $password = "12345678";
     $banco = "ped1";
     global $pdo;
 
