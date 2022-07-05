@@ -20,7 +20,7 @@
 <body>
     <form action="./lancamentos/lancamento.php" method="POST">
         <input type="hidden" name="tipo" id="tipo" value=<?=$_POST['tipo']?>>
-        <input type="number" name="valor" id="valor" step=".01">
+        <input type="number" name="valor" id="valor" step=".05">
         <input type="text" name="descricao" id="descricao">
         <button type="submit">Inserir</button>
     </form>

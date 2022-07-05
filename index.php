@@ -7,6 +7,6 @@
     <title>SalvaAi</title>
 </head>
 <body>
-    
+    <a href="./usuario/login.php">Entrar</a>
 </body>
 </html>
