@@ -81,7 +81,7 @@ $data = $result->fetchAll();
                 <div class="modal-body">
                     <form action="./lancamentos/lancamento.php" method="POST">
                         <input type="hidden" name="tipo" id="tipo" value="entrada">
-                        <input type="number" class="border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor">
+                        <input type="number" class="border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor" min="0">
                         <input type="text" class="border rounded p-1" name="descricao" id="descricao" placeholder="Descrição">
                         <button type="submit" class="border rounded p-1 text-white bg-secondary">Inserir</button>
                     </form>
