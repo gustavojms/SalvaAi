@@ -70,7 +70,6 @@ foreach ($data3 as $lancamento) {
                                 <div class="d-flex flex-column align-items-start dropdown-item">
                                     <button name="tipo" id="tipo" value="entrada" class="btn mb-4 p-2 bg-transparent text-primary" data-bs-toggle="modal" data-bs-target="#entradaModal"><i class="bi bi-plus-circle" style="font-size: 1.5rem; margin-right: 10px;"></i>Nova entrada</button>
                                     <button name="tipo" id="tipo" value="saida" class="btn mb-4 p-2 bg-transparent text-primary" data-bs-toggle="modal" data-bs-target="#saidaModal"><i class="bi bi-download" style="font-size: 1.5rem; margin-right: 10px;"></i>Saida</button>
-                                    <button class="btn text-primary" data-bs-toggle="modal" data-bs-target="#balancoModal"><i class="bi bi-bank" style="font-size: 1.5rem; margin-right: 10px;"></i>Balanço</button>
                                 </div>
                             </li>
                         </ul>
@@ -86,7 +85,7 @@ foreach ($data3 as $lancamento) {
                     </li>
                 </ul>
             </nav>
-            <main class="col-md-9 ml-sm-auto col-lg-10 pt-3">
+            <main class="col-md-9 ml-sm-auto col-lg-10 pt-2">
 
                 <div class="mx-auto border rounded-5 p-4 mb-4" width="800" height="467" style="display: block; width: 800px; height: 467px;">
                     <canvas id="myChart"></canvas>
@@ -105,24 +104,7 @@ foreach ($data3 as $lancamento) {
             </main>
         </div>
     </div>
-    <div class="modal fade" id="balancoModal" tabindex="-1" aria-labelledby="balancoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="balancoModalLabel">Balanço</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php foreach ($data as $row) : ?>
-                        <p class="text-center m-0 p-2">Seu balanço atual é de: <?= $row['balanco'] ?></p>
-                    <?php endforeach ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <div class="modal fade" id="entradaModal" tabindex="-1" aria-labelledby="entradaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -170,7 +152,6 @@ foreach ($data3 as $lancamento) {
         
         const labels = <?= json_encode($dataBalanco) ?>;
         const labels2 = <?php echo json_encode($dataLancamento); ?>;
-
         
         const data = {
             labels: labels,

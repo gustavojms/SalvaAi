@@ -19,6 +19,9 @@
 <body>
     <div class="container">
         <div class="row vh-100 align-items-center">
+            <div class="col-md-4 offset-md-4">
+                <h1 class="text-secondary text-center mb-5 pb-5">SalvaAi</h1>
+            
         <form action="auth.php" method="post" class="d-flex flex-column align-items-center">
             <h1 class="text-primary mb-5">Entrar com sua conta</h1>
 
@@ -31,7 +34,6 @@
             <span class="fw-semibold">Senha</span>
             <input type="password" name="senha" id="senha" placeholder="Digite sua senha" class="form-control border border-2 rounded-pill mb-4 text-center pe-5 ps-5">
         </label>
-
 <button type="submit" class="btn btn-secondary btn-block border rounded-pill pe-5 ps-5 mb-3">
     Entrar
 </button>        
@@ -40,6 +42,6 @@
     </form>
         </div>
     </div>
-    
+    </div>
 </body>
 </html>

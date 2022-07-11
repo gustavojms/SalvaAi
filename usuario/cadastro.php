@@ -20,6 +20,8 @@
 
     <div class="container">
         <div class="row vh-100 align-items-center">
+            <div class="col-md-4 offset-md-4">
+                <h1 class="text-secondary text-center mb-5 pb-5">SalvaAi</h1>
         <form action="cadastrar.php" method="post" class="d-flex flex-column align-items-center">
             <h1 class="text-primary mb-5">Crie sua conta</h1>
 
