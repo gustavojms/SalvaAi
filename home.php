@@ -79,7 +79,7 @@ foreach ($data3 as $lancamento) {
                         <ul class="dropdown-menu ms-4" aria-labelledby="userDrop">
                             <li>
                                 <div class="dropdown-item">
-                                    <a href="./usuario/logout.php" class="btn border-0 bg-transparent text-primary">Sair</a>
+                                    <a href="./usuario/logout.php" class="btn border-0 bg-transparent text-primary px-4">Sair</a>
                                 </div>
                             </li>
                     </li>
