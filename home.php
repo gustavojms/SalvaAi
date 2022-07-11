@@ -7,6 +7,27 @@ if (!Usuario::isLogged()) {
 }
 $result = $pdo->query("SELECT sum(valor * case when tipo = 'entrada' then 1 else -1 end) AS balanco FROM lancamentos WHERE fk_lan_user = " . $_SESSION['userId']);
 $data = $result->fetchAll();
+
+//
+$resultado = $pdo->query("SELECT distinct monthname(data) from lancamentos");
+$dados = $resultado->fetchAll();
+
+$results = $pdo->query("SELECT sum(valor) from lancamentos group by data ");
+$datas = $results->fetchAll();
+
+foreach ($dados as $itens){
+    $meses[] = $itens["monthname(data)"];
+  
+} 
+
+foreach ($datas as $item){
+    
+    $valores[] = $item["sum(valor)"];
+}
+
+//
+
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +72,7 @@ $data = $result->fetchAll();
                         </li>
                 </li>
             </ul>
+    </div>
         </nav>
     </header>
     <div class="modal fade" id="balancoModal" tabindex="-1" aria-labelledby="balancoModalLabel" aria-hidden="true">
@@ -83,6 +105,7 @@ $data = $result->fetchAll();
                         <input type="hidden" name="tipo" id="tipo" value="entrada">
                         <input type="number" class="border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor" min="0">
                         <input type="text" class="border rounded p-1" name="descricao" id="descricao" placeholder="Descrição">
+                        <input type="date" class="border rounded p-1" name="data" id="data">
                         <button type="submit" class="border rounded p-1 text-white bg-secondary">Inserir</button>
                     </form>
                 </div>
@@ -92,6 +115,7 @@ $data = $result->fetchAll();
             </div>
         </div>
     </div>
+    
     <div class="modal fade" id="saidaModal" tabindex="-1" aria-labelledby="saidaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -104,6 +128,7 @@ $data = $result->fetchAll();
                         <input type="hidden" name="tipo" id="tipo" value="saida">
                         <input type="number" class="border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor">
                         <input type="text" class="border rounded p-1" name="descricao" id="descricao" placeholder="Descrição">
+                        <input type="date" class="border rounded p-1" name="data" id="data">
                         <button type="submit" class="border rounded p-1 text-white bg-secondary">Inserir</button>
                     </form>
                 </div>
@@ -114,5 +139,48 @@ $data = $result->fetchAll();
         </div>
     </div>
 </body>
+
+    
+    <div class="chart-container" style="position: relative; height:40vh; width:80vw; margin: 0 auto";>
+    <canvas id="myChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?php echo json_encode($meses)?>,
+            datasets: [{
+                label: '# of Votes',
+                data: <?php echo json_encode($valores)?>,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+
 
 </html>
