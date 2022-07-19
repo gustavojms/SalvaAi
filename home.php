@@ -89,15 +89,26 @@ if ($lancamentos) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="./lancamentos/lancamento.php" method="POST">
-                        <input type="hidden" name="tipo" id="tipo" value="entrada">
-                        <input type="number" class="border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor" min="0">
-                        <input type="text" class="border rounded p-1" name="descricao" id="descricao" placeholder="Descrição">
-                        <button type="submit" class="border rounded p-1 text-white bg-secondary">Inserir</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <form class="" action="./lancamentos/lancamento.php" method="POST">
+                                    <input type="hidden" name="tipo" id="tipo" value="entrada">
+                                    <div class="mb-4">
+                                        <label for="valor">Valor</label>
+                                        <input type="number" class="form-control border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor" min="0">
+                                    </div>
+                                    <div>
+                                        <label for="descricao">Descrição</label>
+                                        <input type="text" class="form-control border rounded p-1" name="descricao" id="descricao" placeholder="Descrição">
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-secondary me-2">Inserir</button>
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
