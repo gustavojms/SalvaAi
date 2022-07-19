@@ -5,32 +5,39 @@ if (!Usuario::isLogged()) {
     header("Location: ./usuario/login.php");
     exit();
 }
-$result = $pdo->query("SELECT sum(valor * case when tipo = 'entrada' then 1 else -1 end) AS balanco FROM lancamentos WHERE fk_lan_user = " . $_SESSION['userId']);
-$data = $result->fetchAll();
+$result = $pdo->query("SELECT sum(valor * case when tipo = 'entrada' then 1 else -1 end) AS balanco FROM lancamentos WHERE fk_usuario = " . $_SESSION['userId']);
+if ($result) {
+    $data = $result->fetchAll();
 
-$resultado = $pdo->query("SELECT date_format(data_balanco, '%d-%M-%Y') as data, valor_balanco AS balanco FROM balanco WHERE fk_bal_user = " . $_SESSION['userId']);
-$data2 = $resultado->fetchAll();
-
-$lancamentos = $pdo->query("SELECT valor, tipo, date_format(data_lancamento, '%d-%M-%Y') as data_lancamento FROM lancamentos WHERE fk_lan_user = " . $_SESSION['userId']);
-$data3 = $lancamentos->fetchAll();
-
-foreach ($data as $balanco) {
-    $balancoAtual[] = $balanco['balanco'];
-}
-
-foreach ($data2 as $query) {
-    $dataBalanco[] = $query['data'];
-    $valorBalanco[] = $query['balanco'];
-}
-
-foreach ($data3 as $lancamento) {
-    if ($lancamento['tipo'] == 'entrada') {
-        $entradas[] = $lancamento['valor'];
-    } else {
-        $saidas[] = $lancamento['valor'];
+    foreach ($data as $balanco) {
+        $balancoAtual[] = $balanco['balanco'];
     }
+}
 
-    $dataLancamento[] = $lancamento['data_lancamento'];
+$resultado = $pdo->query("SELECT date_format(data_balanco, '%d-%M-%Y') as data, valor_balanco AS balanco FROM balanco WHERE fk_usuario = " . $_SESSION['userId']);
+
+if ($resultado) {
+    $data2 = $resultado->fetchAll();
+
+    foreach ($data2 as $query) {
+        $dataBalanco[] = $query['data'];
+        $valorBalanco[] = $query['balanco'];
+    }
+}
+
+$lancamentos = $pdo->query("SELECT valor, tipo, date_format(data_lancamento, '%d-%M-%Y') as data_lancamento FROM lancamentos WHERE fk_usuario = " . $_SESSION['userId']);
+if ($lancamentos) {
+    $data3 = $lancamentos->fetchAll();
+
+    foreach ($data3 as $lancamento) {
+        if ($lancamento['tipo'] == 'entrada') {
+            $entradas[] = $lancamento['valor'];
+        } else {
+            $saidas[] = $lancamento['valor'];
+        }
+
+        $dataLancamento[] = $lancamento['data_lancamento'];
+    }
 }
 
 ?>
@@ -95,7 +102,7 @@ foreach ($data3 as $lancamento) {
                             echo "Seu balanço atual é de: R$ " . $balancoAtual[0];
                         }
                         ?>
-                </p>
+                    </p>
                 </div>
                 <div class="mx-auto border rounded-5 p-4" width="800" height="467" style="display: block; width: 800px; height: 467px;">
                     <canvas id="myChart2"></canvas>
@@ -104,7 +111,7 @@ foreach ($data3 as $lancamento) {
             </main>
         </div>
     </div>
-    
+
     <div class="modal fade" id="entradaModal" tabindex="-1" aria-labelledby="entradaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -149,10 +156,9 @@ foreach ($data3 as $lancamento) {
     </div>
 
     <script>
-        
         const labels = <?= json_encode($dataBalanco) ?>;
         const labels2 = <?php echo json_encode($dataLancamento); ?>;
-        
+
         const data = {
             labels: labels,
             datasets: [{
@@ -177,23 +183,23 @@ foreach ($data3 as $lancamento) {
             },
         };
 
-       const data2 = {
+        const data2 = {
             labels: labels2,
             datasets: [{
-                label: 'Entradas',
-                backgroundColor: 'rgb(34, 144, 50)',
-                borderColor: 'rgb(34, 144, 50)',
-                data: <?php echo json_encode($entradas); ?>,
-                borderRadius: 10,
-            },
-            {
-                label: 'Saídas',
-                backgroundColor: 'rgb(180, 4, 20)',
-                borderColor: 'rgb(180, 4, 20)',
-                data: <?php echo json_encode($saidas); ?>,
-                borderRadius: 10,
-            }
-        ]
+                    label: 'Entradas',
+                    backgroundColor: 'rgb(34, 144, 50)',
+                    borderColor: 'rgb(34, 144, 50)',
+                    data: <?php echo json_encode($entradas); ?>,
+                    borderRadius: 10,
+                },
+                {
+                    label: 'Saídas',
+                    backgroundColor: 'rgb(180, 4, 20)',
+                    borderColor: 'rgb(180, 4, 20)',
+                    data: <?php echo json_encode($saidas); ?>,
+                    borderRadius: 10,
+                }
+            ]
         };
 
         const config2 = {
