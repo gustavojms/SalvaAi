@@ -61,24 +61,27 @@ if ($lancamentos) {
     <div class="container-fluid">
         <div class="row">
             <nav class="sidebar col-md-2 d-none d-md-block bg-light">
-                <ul class="nav nav-pills d-flex flex-column align-items-center bg-light vh-100 p-5">
-                    <li class="nav-item mb-4">
-                        <h1 class="text-secondary fs-2">
+                <ul class="nav nav-pills flex-column bg-light vh-100">
+                    <li class="nav-item">
+                        <h3 class="text-secondary py-3">
                             SalvaAi
-                        </h1>
+                        </h3>
                     </li>
-                    <li class="nav-item mb-4">
-                        <a href="./home.php" class="text-decoration-none"><i class="bi bi-house" style="font-size: 1.5rem; margin-right: 1rem;"></i>Inicio</a>
+                    <li class="nav-item">
+                        <a href="./home.php" class="nav-link active">
+                            <i class="bi bi-house" style="font-size: 1.5rem; margin-right: 1rem;"></i>Inicio</a>
                     </li>
                     <li class="nav-item dropdown mb-auto">
-                        <a class="nav-link dropdown-toggle text-primary mb-auto" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="finDrop"><i class="bi bi-credit-card" style="font-size: 1.5rem; margin-right: 1rem;"></i>Finanças</a>
-                        <ul class="dropdown-menu ms-4" aria-labelledby="finDrop">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="finDrop"><i class="bi bi-credit-card" style="font-size: 1.5rem; margin-right: 1rem;"></i>Finanças</a>
+                        <ul class="dropdown-menu ms-5">
                             <li>
-                                <div class="d-flex flex-column align-items-start dropdown-item">
-                                    <button name="tipo" id="tipo" value="entrada" class="btn mb-4 p-2 bg-transparent text-primary" data-bs-toggle="modal" data-bs-target="#entradaModal"><i class="bi bi-plus-circle" style="font-size: 1.5rem; margin-right: 10px;"></i>Nova entrada</button>
-                                    <button name="tipo" id="tipo" value="saida" class="btn mb-4 p-2 bg-transparent text-primary" data-bs-toggle="modal" data-bs-target="#saidaModal"><i class="bi bi-download" style="font-size: 1.5rem; margin-right: 10px;"></i>Saida</button>
-                                </div>
+                                <a href="#" name="tipo" id="tipo" value="entrada" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#entradaModal"><i class="bi bi-plus-circle" style="font-size: 1.5rem; margin-right: 10px;"></i>Nova entrada</a>
                             </li>
+                            <li>
+                                <a href="#" name="tipo" id="tipo" value="saida" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#saidaModal"><i class="bi bi-download" style="font-size: 1.5rem; margin-right: 10px;"></i>Saida</a>
+                            </li>
+                                <div class="d-flex flex-column align-items-start ">
+                                </div>
                         </ul>
                     </li>
                     <li class="btn-group dropup">
@@ -92,7 +95,7 @@ if ($lancamentos) {
                     </li>
                 </ul>
             </nav>
-            <main class="col-md-9 ml-sm-auto col-lg-10 pt-2">
+            <main class="col-md-9 ml-sm-auto col-lg-10 pt-2" style="max-height: 100vh; overflow-y: auto;">
 
                 <div class="mx-auto border rounded-5 p-4 mb-4" width="800" height="467" style="display: block; width: 800px; height: 467px;">
                     <canvas id="myChart"></canvas>
@@ -133,6 +136,7 @@ if ($lancamentos) {
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="saidaModal" tabindex="-1" aria-labelledby="saidaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
