@@ -92,9 +92,9 @@ if ($lancamentos) {
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col">
-                                <form class="" action="./lancamentos/lancamento.php" method="POST">
+                                <form action="./lancamentos/lancamento.php" method="POST">
                                     <input type="hidden" name="tipo" id="tipo" value="entrada">
-                                    <div class="mb-4">
+                                    <div class="mb-3">
                                         <label for="valor">Valor</label>
                                         <input type="number" class="form-control border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor" min="0">
                                     </div>
@@ -122,15 +122,27 @@ if ($lancamentos) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="./lancamentos/lancamento.php" method="POST">
-                        <input type="hidden" name="tipo" id="tipo" value="saida">
-                        <input type="number" class="border rounded p-1" name="valor" id="valor" step=".05" placeholder="Digite o valor">
-                        <input type="text" class="border rounded p-1" name="descricao" id="descricao" placeholder="Descrição">
-                        <button type="submit" class="border rounded p-1 text-white bg-secondary">Inserir</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <form action="./lancamentos/lancamento.php" method="POST">
+                                    <input type="hidden" name="tipo" id="tipo" value="saida">
+
+                                    <div class="mb-3">
+                                        <label>Valor</label>
+                                        <input type="number" class="form-control" name="valor" id="valor" step=".05" placeholder="Digite o valor">
+                                    </div>
+                                    <div>
+                                        <label for="">Descrição</label>
+                                        <input type="text" class="form-control" name="descricao" id="descricao" placeholder="Descrição">
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-secondary me-2">Inserir</button>
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
