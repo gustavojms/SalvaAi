@@ -15,3 +15,4 @@ O SalvaAi é um sistema para gerenciamento de finanças pessoais, onde você pod
 * PHP
 * Bootstrap
 * ChartJS
+* MySQL
